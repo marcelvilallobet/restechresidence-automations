@@ -1,80 +1,327 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FinautoIA — Automatización práctica para pymes</title>
-  <meta name="description" content="Automatizamos ventas, soporte y operaciones con agentes de IA, WhatsApp y n8n. Montamos flujos reales en días, no en meses." />
+  <meta name="description"
+    content="Automatizamos ventas, soporte y operaciones con agentes de IA, WhatsApp y n8n. Montamos flujos reales en días, no en meses." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#0b0d12;--card:#121521;--muted:#8892a6;--text:#e8edf6;--brand:#6cf0c2;--brand-2:#8aa5ff;--stroke:#1b2030;--ok:#5cf07f;--warn:#ffd166;
+    :root {
+      --bg: #0b0d12;
+      --card: #121521;
+      --muted: #8892a6;
+      --text: #e8edf6;
+      --brand: #6cf0c2;
+      --brand-2: #8aa5ff;
+      --stroke: #1b2030;
+      --ok: #5cf07f;
+      --warn: #ffd166;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; background:radial-gradient(1000px 600px at 10% -10%, #141a2a 0%, #0b0d12 60%), radial-gradient(800px 500px at 100% 10%, #121a28 0%, #0b0d12 70%); color:var(--text)}
-    a{color:inherit;text-decoration:none}
-    .container{max-width:1140px;margin:0 auto;padding:0 20px}
-    .nav{position:sticky;top:0;backdrop-filter:saturate(1.2) blur(8px); background:rgba(11,13,18,.6); border-bottom:1px solid var(--stroke); z-index:50}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between; height:64px}
-    .logo{display:flex;align-items:center;gap:10px;font-weight:800}
-    .logo-badge{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;color:#091015;font-weight:900}
-    .menu{display:flex;gap:22px;align-items:center}
-    .menu a{color:var(--muted);font-weight:600}
-    .menu a:hover{color:var(--text)}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid var(--stroke);border-radius:10px;background:#0e1220}
-    .btn-primary{background:linear-gradient(90deg,var(--brand),var(--brand-2)); color:#0b0d12;border-color:transparent;font-weight:800}
-    .hero{padding:72px 0 36px;border-bottom:1px solid var(--stroke)}
-    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:28px}
-    .tag{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--stroke);padding:6px 10px;border-radius:999px;color:var(--muted);font-size:12px}
-    h1{font-size:44px;line-height:1.05;margin:14px 0 14px}
-    p.lead{color:#cfd6e6;font-size:18px;line-height:1.6}
-    .hero-card{background:linear-gradient(180deg,#121726,#0e1220);border:1px solid var(--stroke);border-radius:16px;padding:16px}
-    .signal{display:flex;gap:10px;align-items:center;margin:10px 0}
-    .signal b{color:var(--ok)}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .card{background:linear-gradient(180deg,#111626,#0e1220); border:1px solid var(--stroke);border-radius:14px;padding:16px}
-    .card h3{margin:8px 0 6px;font-size:18px}
-    .muted{color:var(--muted)}
-    .divider{height:1px;background:var(--stroke);margin:26px 0}
-    .section{padding:48px 0}
-    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-    .kpi{background:#0f1424;border:1px solid var(--stroke);padding:16px;border-radius:12px;text-align:center}
-    .kpi h2{margin:0;font-size:28px}
-    .list{display:grid;gap:10px}
-    .badge{display:inline-flex;align-items:center;gap:8px;background:#0f1424;border:1px solid var(--stroke);padding:8px 10px;border-radius:10px;color:#cfe6da}
-    .cta{display:flex;gap:12px;flex-wrap:wrap}
-    .cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-    .pill{display:inline-block;font-size:12px;color:#0d1220;background:var(--brand);padding:6px 10px;border-radius:999px;font-weight:700}
-    .footer{padding:36px 0;color:var(--muted);border-top:1px solid var(--stroke)}
-    .mobile{display:none}
-    .show-md{display:none}
-    @media (max-width:980px){
-      .hero-grid,.cols,.grid-3,.kpis{grid-template-columns:1fr}
-      .menu{display:none}
-      .mobile{display:inline-flex}
-      h1{font-size:36px}
-      .show-md{display:block}
+
+    * {
+      box-sizing: border-box
     }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1000px 600px at 10% -10%, #141a2a 0%, #0b0d12 60%), radial-gradient(800px 500px at 100% 10%, #121a28 0%, #0b0d12 70%);
+      color: var(--text)
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 20px
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      backdrop-filter: saturate(1.2) blur(8px);
+      background: rgba(11, 13, 18, .6);
+      border-bottom: 1px solid var(--stroke);
+      z-index: 50
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800
+    }
+
+    .logo-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      display: grid;
+      place-items: center;
+      color: #091015;
+      font-weight: 900
+    }
+
+    .menu {
+      display: flex;
+      gap: 22px;
+      align-items: center
+    }
+
+    .menu a {
+      color: var(--muted);
+      font-weight: 600
+    }
+
+    .menu a:hover {
+      color: var(--text)
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border: 1px solid var(--stroke);
+      border-radius: 10px;
+      background: #0e1220
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--brand), var(--brand-2));
+      color: #000 !important;
+      border-color: transparent;
+      font-weight: 800
+    }
+
+    .hero {
+      padding: 72px 0 36px;
+      border-bottom: 1px solid var(--stroke)
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 28px
+    }
+
+    .tag {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      border: 1px solid var(--stroke);
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 12px
+    }
+
+    h1 {
+      font-size: 44px;
+      line-height: 1.05;
+      margin: 14px 0 14px
+    }
+
+    p.lead {
+      color: #cfd6e6;
+      font-size: 18px;
+      line-height: 1.6
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, #121726, #0e1220);
+      border: 1px solid var(--stroke);
+      border-radius: 16px;
+      padding: 16px
+    }
+
+    .signal {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin: 10px 0
+    }
+
+    .signal b {
+      color: var(--ok)
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px
+    }
+
+    .card {
+      background: linear-gradient(180deg, #111626, #0e1220);
+      border: 1px solid var(--stroke);
+      border-radius: 14px;
+      padding: 16px
+    }
+
+    .card h3 {
+      margin: 8px 0 6px;
+      font-size: 18px
+    }
+
+    .muted {
+      color: var(--muted)
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--stroke);
+      margin: 26px 0
+    }
+
+    .section {
+      padding: 48px 0
+    }
+
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px
+    }
+
+    .kpi {
+      background: #0f1424;
+      border: 1px solid var(--stroke);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center
+    }
+
+    .kpi h2 {
+      margin: 0;
+      font-size: 28px
+    }
+
+    .list {
+      display: grid;
+      gap: 10px
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0f1424;
+      border: 1px solid var(--stroke);
+      padding: 8px 10px;
+      border-radius: 10px;
+      color: #cfe6da
+    }
+
+    .cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap
+    }
+
+    .cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px
+    }
+
+    .pill {
+      display: inline-block;
+      font-size: 12px;
+      color: #0d1220;
+      background: var(--brand);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 700
+    }
+
+    .footer {
+      padding: 36px 0;
+      color: var(--muted);
+      border-top: 1px solid var(--stroke)
+    }
+
+    .mobile {
+      display: none
+    }
+
+    .show-md {
+      display: none
+    }
+
+    @media (max-width:980px) {
+
+      .hero-grid,
+      .cols,
+      .grid-3,
+      .kpis {
+        grid-template-columns: 1fr
+      }
+
+      .menu {
+        display: none
+      }
+
+      .mobile {
+        display: inline-flex
+      }
+
+      h1 {
+        font-size: 36px
+      }
+
+      .show-md {
+        display: block
+      }
+    }
+
     /* simple icon */
-    .check{width:16px;height:16px;border-radius:4px;background:linear-gradient(135deg,var(--brand),var(--ok));display:inline-block}
+    .check {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, var(--brand), var(--ok));
+      display: inline-block
+    }
   </style>
 </head>
+
 <body>
   <!-- NAV -->
   <nav class="nav">
     <div class="container nav-inner">
-      <a href="#" class="logo"><span class="logo-badge">R</span> FinautoIA</a>
+      <a href="#" class="logo"><span class="logo-badge">F</span> FinautoIA</a>
       <div class="menu">
         <a href="#soluciones">Soluciones</a>
         <a href="#servicios">Servicios</a>
         <a href="#casos">Casos de uso</a>
         <a href="#precios">Precios</a>
         <a href="#faq">FAQ</a>
-        <a class="btn btn-primary" href="mailto:marcel.vila@finautoia.com?subject=Quiero%20una%20demo">Solicitar demo</a>
+        <a class="btn btn-primary" href="mailto:marcel.vila@finautoia.com?subject=Quiero%20una%20demo">Solicitar
+          demo</a>
       </div>
       <button class="btn mobile" id="openMenu">Menú</button>
     </div>
@@ -85,13 +332,17 @@
     <div class="container hero-grid">
       <div>
         <span class="tag">Agentes de IA • WhatsApp • n8n</span>
-        <h1>Automatizamos lo que te quita horas. <br class="show-md"/>Ventas, soporte y operaciones <i>en piloto automático</i>.</h1>
-        <p class="lead">Montamos flujos reales (captación, atención, reservas, seguimiento) conectados a tus sistemas. Todo medible. Sin humo.</p>
+        <h1>Automatizamos lo que te quita horas. <br class="show-md" />Ventas, soporte y operaciones <i>en piloto
+            automático</i>.</h1>
+        <p class="lead">Montamos flujos reales (captación, atención, reservas, seguimiento) conectados a tus sistemas.
+          Todo medible. Sin humo.</p>
         <div class="cta" style="margin:18px 0 10px">
-          <a class="btn btn-primary" href="mailto:marcel.vila@finautoia.com?subject=Quiero%20una%20demo">Solicitar demo</a>
-          <a class="btn" href="#soluciones">Ver cómo funciona</a>
+          <a class="btn btn-primary" href="mailto:marcel.vila@finautoia.com?subject=Quiero%20una%20demo">Solicitar
+            demo</a>
+
         </div>
-        <div class="signal"><span class="check"></span> <b>Resultados en días</b> • Integraciones limpias • Soporte cercano</div>
+        <div class="signal"><span class="check"></span> <b>Resultados en días</b> • Integraciones limpias • Soporte
+          cercano</div>
       </div>
       <div class="hero-card">
         <div class="muted" style="font-weight:600;margin-bottom:6px">Vista rápida de un flujo</div>
@@ -105,9 +356,18 @@
           </ol>
         </div>
         <div class="grid-3">
-          <div class="kpi"><h2>24/7</h2><div class="muted">Atención</div></div>
-          <div class="kpi"><h2>‑60%</h2><div class="muted">Tiempos de respuesta</div></div>
-          <div class="kpi"><h2>+28%</h2><div class="muted">Leads a cita</div></div>
+          <div class="kpi">
+            <h2>24/7</h2>
+            <div class="muted">Atención</div>
+          </div>
+          <div class="kpi">
+            <h2>‑60%</h2>
+            <div class="muted">Tiempos de respuesta</div>
+          </div>
+          <div class="kpi">
+            <h2>+28%</h2>
+            <div class="muted">Leads a cita</div>
+          </div>
         </div>
       </div>
     </div>
@@ -137,7 +397,8 @@
   </section>
 
   <!-- SERVICIOS -->
-  <section class="section" id="servicios" style="background:#0c111f;border-top:1px solid var(--stroke);border-bottom:1px solid var(--stroke)">
+  <section class="section" id="servicios"
+    style="background:#0c111f;border-top:1px solid var(--stroke);border-bottom:1px solid var(--stroke)">
     <div class="container cols">
       <div>
         <span class="pill">Servicios</span>
@@ -151,7 +412,8 @@
             <li>Panel simple de métricas</li>
           </ul>
           <div class="divider"></div>
-          <a class="btn btn-primary" href="mailto:marcel.vila@finautoia.com?subject=Starter%20—%20Quiero%20empezar">Solicitar por email</a>
+          <a class="btn btn-primary"
+            href="mailto:marcel.vila@finautoia.com?subject=Starter%20—%20Quiero%20empezar">Solicitar por email</a>
         </div>
         <div class="card" style="margin-top:12px">
           <h3>Growth</h3>
@@ -161,7 +423,8 @@
             <li>Automatizaciones de back‑office</li>
           </ul>
           <div class="divider"></div>
-          <a class="btn" href="mailto:marcel.vila@finautoia.com?subject=Growth%20—%20Quiero%20detalles">Pedir detalles</a>
+          <a class="btn" href="mailto:marcel.vila@finautoia.com?subject=Growth%20—%20Quiero%20detalles">Pedir
+            detalles</a>
         </div>
         <div class="card" style="margin-top:12px">
           <h3>Residencias & verticales</h3>
@@ -171,20 +434,30 @@
             <li>Avisos familiares y turnos RRHH</li>
           </ul>
           <div class="divider"></div>
-          <a class="btn" href="mailto:marcel.vila@finautoia.com?subject=Vertical%20Residencias%20—%20Hablar">Hablar de este vertical</a>
+          <a class="btn" href="mailto:marcel.vila@finautoia.com?subject=Vertical%20Residencias%20—%20Hablar">Hablar de
+            este vertical</a>
         </div>
       </div>
       <div>
         <span class="pill">Cómo trabajamos</span>
         <h2 style="margin:10px 0 6px">4 pasos rápidos</h2>
         <div class="grid-3" style="grid-template-columns:1fr;gap:12px">
-          <div class="card"><b>1. Llamada</b><div class="muted">30 min para elegir el flujo con más impacto.</div></div>
-          <div class="card"><b>2. Montaje</b><div class="muted">Conectamos canales y datos. Entrega en días.</div></div>
-          <div class="card"><b>3. Piloto</b><div class="muted">Seguimiento con métricas y ajustes finos.</div></div>
-          <div class="card"><b>4. Escala</b><div class="muted">Añadimos casos de uso y automatizaciones.</div></div>
+          <div class="card"><b>1. Llamada</b>
+            <div class="muted">30 min para elegir el flujo con más impacto.</div>
+          </div>
+          <div class="card"><b>2. Montaje</b>
+            <div class="muted">Conectamos canales y datos. Entrega en días.</div>
+          </div>
+          <div class="card"><b>3. Piloto</b>
+            <div class="muted">Seguimiento con métricas y ajustes finos.</div>
+          </div>
+          <div class="card"><b>4. Escala</b>
+            <div class="muted">Añadimos casos de uso y automatizaciones.</div>
+          </div>
         </div>
         <div class="cta" style="margin-top:14px">
-          <a class="btn btn-primary" href="mailto:marcel.vila@finautoia.com?subject=Quiero%20una%20demo">Solicitar demo</a>
+          <a class="btn btn-primary" href="mailto:marcel.vila@finautoia.com?subject=Quiero%20una%20demo">Solicitar
+            demo</a>
           <a class="btn" href="#faq">Dudas rápidas</a>
         </div>
       </div>
@@ -209,15 +482,28 @@
       </div>
     </div>
     <div class="kpis" style="margin-top:16px">
-      <div class="kpi"><h2>3‑5d</h2><div class="muted">Tiempo medio de despliegue</div></div>
-      <div class="kpi"><h2>98%</h2><div class="muted">Uptime de flujos</div></div>
-      <div class="kpi"><h2>~40%</h2><div class="muted">FAQs resueltas por IA</div></div>
-      <div class="kpi"><h2>‑35%</h2><div class="muted">Coste por lead</div></div>
+      <div class="kpi">
+        <h2>3‑5d</h2>
+        <div class="muted">Tiempo medio de despliegue</div>
+      </div>
+      <div class="kpi">
+        <h2>98%</h2>
+        <div class="muted">Uptime de flujos</div>
+      </div>
+      <div class="kpi">
+        <h2>~40%</h2>
+        <div class="muted">FAQs resueltas por IA</div>
+      </div>
+      <div class="kpi">
+        <h2>‑35%</h2>
+        <div class="muted">Coste por lead</div>
+      </div>
     </div>
   </section>
 
   <!-- PRECIOS (simple orientativo) -->
-  <section class="section" id="precios" style="background:#0c111f;border-top:1px solid var(--stroke);border-bottom:1px solid var(--stroke)">
+  <section class="section" id="precios"
+    style="background:#0c111f;border-top:1px solid var(--stroke);border-bottom:1px solid var(--stroke)">
     <div class="container">
       <h2 style="margin:0 0 10px">Precios orientativos</h2>
       <div class="grid-3">
@@ -235,7 +521,8 @@
         </div>
       </div>
       <div class="cta" style="margin-top:14px">
-        <a class="btn btn-primary" href="mailto:marcel.vila@finautoia.com?subject=Pedir%20presupuesto">Pedir presupuesto</a>
+        <a class="btn btn-primary" href="mailto:marcel.vila@finautoia.com?subject=Pedir%20presupuesto">Pedir
+          presupuesto</a>
         <a class="btn" href="#faq">Preguntas frecuentes</a>
       </div>
     </div>
@@ -247,7 +534,8 @@
     <div class="cols">
       <div class="card">
         <h3>¿Qué necesitas de mi parte?</h3>
-        <p class="muted">Accesos de prueba (o cuentas nuevas), ejemplos de conversaciones, y una idea clara del flujo prioritario.</p>
+        <p class="muted">Accesos de prueba (o cuentas nuevas), ejemplos de conversaciones, y una idea clara del flujo
+          prioritario.</p>
       </div>
       <div class="card">
         <h3>¿Usáis proveedores oficiales?</h3>
@@ -268,8 +556,8 @@
   <footer class="footer">
     <div class="container cols">
       <div>
-        <div class="logo" style="margin-bottom:10px"><span class="logo-badge">R</span> FinautoIA</div>
-        <div class="muted">Barcelona — 2025</div>
+        <div class="logo" style="margin-bottom:10px"><span class="logo-badge">F</span> FinautoIA</div>
+        <div class="muted">España — 2026</div>
       </div>
       <div>
         <div class="muted" style="margin-bottom:6px">Contacto</div>
@@ -280,9 +568,10 @@
 
   <script>
     // simple mobile menu: jump to anchors
-    document.getElementById('openMenu').addEventListener('click',()=>{
+    document.getElementById('openMenu').addEventListener('click', () => {
       alert('Navega a las secciones: Soluciones, Servicios, Casos, Precios, FAQ. (Menú compacto para móvil)');
     });
   </script>
 </body>
+
 </html>
