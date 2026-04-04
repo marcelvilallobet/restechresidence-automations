@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidad — FinautoIA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #0E2841; --secondary: #CAEEFB; --tertiary: #1597DC;
+      --bg: #060e1a; --bg2: #0a1829;
+      --card: rgba(21,151,220,0.04); --card-hover: rgba(21,151,220,0.08);
+      --border: rgba(21,151,220,0.12); --border-hover: rgba(21,151,220,0.28);
+      --text: #e4edf5; --text-bright: #ffffff; --muted: #6889ab;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      overflow-x: hidden; line-height: 1.6;
+    }
+    .ambient {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    }
+    .ambient::before {
+      content: ''; position: absolute; width: 800px; height: 800px;
+      top: -200px; left: -100px;
+      background: radial-gradient(circle, rgba(21,151,220,0.08) 0%, transparent 65%);
+      animation: float1 20s ease-in-out infinite;
+    }
+    .ambient::after {
+      content: ''; position: absolute; width: 600px; height: 600px;
+      bottom: -100px; right: -100px;
+      background: radial-gradient(circle, rgba(202,238,251,0.05) 0%, transparent 65%);
+      animation: float2 25s ease-in-out infinite;
+    }
+    @keyframes float1 { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(100px,80px); } }
+    @keyframes float2 { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(-80px,-60px); } }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 3rem; height: 64px;
+      background: rgba(6,14,26,0.7);
+      backdrop-filter: blur(20px) saturate(1.5);
+      border-bottom: 1px solid rgba(21,151,220,0.08);
+    }
+    .nav-brand { display: flex; align-items: center; gap: .75rem; text-decoration: none; }
+    .nav-logo-icon {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, var(--tertiary), var(--secondary));
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: .8rem; color: var(--bg);
+    }
+    .nav-logo-text {
+      font-size: 1.1rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--secondary), var(--tertiary));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      letter-spacing: -0.5px;
+    }
+    .nav-back {
+      color: var(--muted); text-decoration: none; font-size: .85rem; font-weight: 500;
+      display: flex; align-items: center; gap: .4rem; transition: color .25s;
+    }
+    .nav-back:hover { color: var(--text); }
+    .page-wrap {
+      position: relative; z-index: 1;
+      max-width: 760px; margin: 0 auto;
+      padding: 7rem 2rem 5rem;
+    }
+    .page-badge {
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: rgba(21,151,220,0.1); border: 1px solid rgba(21,151,220,0.2);
+      padding: .4rem 1.1rem; border-radius: 100px;
+      font-size: .78rem; font-weight: 600; color: var(--tertiary); letter-spacing: .5px;
+      margin-bottom: 2rem;
+    }
+    .page-title {
+      font-size: clamp(2rem, 5vw, 3rem); font-weight: 900;
+      letter-spacing: -1.5px; line-height: 1.1; margin-bottom: .75rem;
+    }
+    .page-title span {
+      background: linear-gradient(135deg, var(--tertiary), var(--secondary));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .page-updated {
+      font-size: .8rem; color: var(--muted); margin-bottom: 3rem;
+      padding-bottom: 2rem; border-bottom: 1px solid var(--border);
+    }
+    .legal-section {
+      margin-bottom: 2.5rem;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 2rem;
+      transition: border-color .3s;
+    }
+    .legal-section:hover { border-color: var(--border-hover); }
+    .legal-section h2 {
+      font-size: 1rem; font-weight: 800; margin-bottom: 1rem;
+      display: flex; align-items: center; gap: .5rem; color: var(--text-bright);
+    }
+    .legal-section h2 .num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; border-radius: 6px;
+      background: rgba(21,151,220,0.12); border: 1px solid rgba(21,151,220,0.18);
+      font-size: .75rem; color: var(--tertiary);
+    }
+    .legal-section p { font-size: .88rem; color: var(--muted); line-height: 1.85; margin-bottom: .85rem; }
+    .legal-section p:last-child { margin-bottom: 0; }
+    .legal-section a { color: var(--tertiary); text-decoration: none; }
+    .legal-section a:hover { text-decoration: underline; }
+    .legal-section strong { color: var(--text); font-weight: 600; }
+    .rights-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: .75rem; margin-top: .5rem;
+    }
+    .right-item {
+      background: rgba(21,151,220,0.06); border: 1px solid rgba(21,151,220,0.1);
+      border-radius: 10px; padding: .85rem 1rem;
+    }
+    .right-item strong { display: block; font-size: .83rem; color: var(--tertiary); margin-bottom: .2rem; }
+    .right-item span { font-size: .78rem; color: var(--muted); line-height: 1.6; }
+    footer {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2rem; text-align: center; margin-top: 2rem;
+    }
+    .footer-links { display: flex; gap: 2rem; justify-content: center; list-style: none; margin-bottom: .75rem; flex-wrap: wrap; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: .83rem; font-weight: 500; transition: color .25s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { color: var(--muted); font-size: .78rem; opacity: .7; }
+    .footer-legal { margin-top: .75rem; font-size: .72rem; opacity: .45; }
+    .footer-legal a { color: var(--muted); text-decoration: none; margin: 0 .4rem; }
+    @media (max-width: 600px) {
+      nav { padding: 0 1.5rem; }
+      .rights-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="ambient"></div>
+<nav>
+  <a href="/" class="nav-brand">
+    <div class="nav-logo-icon">F</div>
+    <span class="nav-logo-text">FinautoIA</span>
+  </a>
+  <a href="/" class="nav-back">← Volver al inicio</a>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-badge">🔒 Privacidad</div>
+  <h1 class="page-title">Política de <span>Privacidad</span></h1>
+  <p class="page-updated">Última actualización: enero 2026 · En cumplimiento del RGPD (UE) 2016/679 y la LOPDGDD</p>
+
+  <div class="legal-section">
+    <h2><span class="num">1</span> Responsable del tratamiento</h2>
+    <p><strong>Identidad:</strong> Marcel Vila (FinautoIA)</p>
+    <p><strong>NIF:</strong> 23896274X</p>
+    <p><strong>Contacto:</strong> <a href="mailto:marcel.vila@finautoia.com">marcel.vila@finautoia.com</a></p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">2</span> Qué datos recogemos y cómo</h2>
+    <p>Recogemos únicamente los datos que el usuario nos proporciona voluntariamente a través del correo electrónico de contacto (<a href="mailto:marcel.vila@finautoia.com">marcel.vila@finautoia.com</a>):</p>
+    <p><strong>Datos de contacto:</strong> nombre y dirección de correo electrónico, así como cualquier información adicional que el usuario decida incluir en su mensaje.</p>
+    <p>No se recogen datos a través de formularios automatizados ni se realiza ningún tipo de perfilado o seguimiento del comportamiento del usuario en el Sitio más allá de lo descrito en la Política de Cookies.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">3</span> Finalidad y base jurídica del tratamiento</h2>
+    <p><strong>Gestión de consultas y contacto comercial:</strong> responder a los mensajes enviados por el usuario y gestionar el proceso de contratación de servicios. Base jurídica: interés legítimo del responsable y ejecución del contrato (art. 6.1.b y 6.1.f RGPD).</p>
+    <p><strong>Envío de comunicaciones comerciales:</strong> solo si el usuario ha dado su consentimiento expreso. Base jurídica: consentimiento del interesado (art. 6.1.a RGPD).</p>
+    <p>Los datos no se utilizarán para ninguna otra finalidad distinta a las indicadas sin informar previamente al usuario.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">4</span> Conservación de los datos</h2>
+    <p>Los datos se conservarán durante el tiempo necesario para atender la solicitud y, en caso de relación contractual, durante el plazo legalmente exigido (hasta 6 años según la normativa mercantil española).</p>
+    <p>Una vez cumplida la finalidad, los datos serán suprimidos o anonimizados.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">5</span> Cesión de datos a terceros</h2>
+    <p>No se ceden datos personales a terceros, salvo obligación legal. Los datos pueden ser accedidos por proveedores de servicios tecnológicos (como el proveedor de correo electrónico) en calidad de encargados del tratamiento y bajo las garantías establecidas por el RGPD.</p>
+    <p>En particular, se utiliza infraestructura de Google (Gmail / Google Workspace) para la gestión del correo. Puedes consultar su política de privacidad en <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com</a>.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">6</span> Tus derechos</h2>
+    <p>En virtud del RGPD, tienes los siguientes derechos respecto a tus datos personales:</p>
+    <div class="rights-grid">
+      <div class="right-item"><strong>Acceso</strong><span>Conocer qué datos tenemos sobre ti.</span></div>
+      <div class="right-item"><strong>Rectificación</strong><span>Corregir datos inexactos o incompletos.</span></div>
+      <div class="right-item"><strong>Supresión</strong><span>Solicitar que eliminemos tus datos.</span></div>
+      <div class="right-item"><strong>Oposición</strong><span>Oponerte al tratamiento de tus datos.</span></div>
+      <div class="right-item"><strong>Limitación</strong><span>Restringir el tratamiento en determinados casos.</span></div>
+      <div class="right-item"><strong>Portabilidad</strong><span>Recibir tus datos en formato estructurado.</span></div>
+    </div>
+    <p style="margin-top:1rem;">Para ejercer cualquiera de estos derechos, escríbenos a <a href="mailto:marcel.vila@finautoia.com">marcel.vila@finautoia.com</a>. Responderemos en un plazo máximo de 30 días. También puedes presentar una reclamación ante la <a href="https://www.aepd.es" target="_blank" rel="noopener">Agencia Española de Protección de Datos (AEPD)</a>.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">7</span> Seguridad</h2>
+    <p>Adoptamos las medidas técnicas y organizativas adecuadas para proteger tus datos personales frente a accesos no autorizados, pérdida o alteración. Sin embargo, ninguna transmisión por internet está completamente exenta de riesgos.</p>
+  </div>
+</div>
+
+<footer>
+  <ul class="footer-links">
+    <li><a href="/">Inicio</a></li>
+    <li><a href="/#casos">Casos</a></li>
+    <li><a href="/#proceso">Proceso</a></li>
+    <li><a href="mailto:marcel.vila@finautoia.com">Contacto</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 FinautoIA · Automatización práctica para pymes</p>
+  <p class="footer-legal">
+    <a href="/aviso-legal.html">Aviso Legal</a> ·
+    <a href="/privacidad.html">Política de Privacidad</a> ·
+    <a href="/cookies.html">Cookies</a>
+  </p>
+</footer>
+</body>
+</html>

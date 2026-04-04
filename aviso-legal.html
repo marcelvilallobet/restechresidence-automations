@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aviso Legal — FinautoIA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #0E2841; --secondary: #CAEEFB; --tertiary: #1597DC;
+      --bg: #060e1a; --bg2: #0a1829;
+      --card: rgba(21,151,220,0.04); --card-hover: rgba(21,151,220,0.08);
+      --border: rgba(21,151,220,0.12); --border-hover: rgba(21,151,220,0.28);
+      --text: #e4edf5; --text-bright: #ffffff; --muted: #6889ab;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      overflow-x: hidden; line-height: 1.6;
+    }
+    .ambient {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    }
+    .ambient::before {
+      content: ''; position: absolute; width: 800px; height: 800px;
+      top: -200px; left: -100px;
+      background: radial-gradient(circle, rgba(21,151,220,0.08) 0%, transparent 65%);
+      animation: float1 20s ease-in-out infinite;
+    }
+    .ambient::after {
+      content: ''; position: absolute; width: 600px; height: 600px;
+      bottom: -100px; right: -100px;
+      background: radial-gradient(circle, rgba(202,238,251,0.05) 0%, transparent 65%);
+      animation: float2 25s ease-in-out infinite;
+    }
+    @keyframes float1 { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(100px,80px); } }
+    @keyframes float2 { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(-80px,-60px); } }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 3rem; height: 64px;
+      background: rgba(6,14,26,0.7);
+      backdrop-filter: blur(20px) saturate(1.5);
+      border-bottom: 1px solid rgba(21,151,220,0.08);
+    }
+    .nav-brand { display: flex; align-items: center; gap: .75rem; text-decoration: none; }
+    .nav-logo-icon {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, var(--tertiary), var(--secondary));
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: .8rem; color: var(--bg);
+    }
+    .nav-logo-text {
+      font-size: 1.1rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--secondary), var(--tertiary));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      letter-spacing: -0.5px;
+    }
+    .nav-back {
+      color: var(--muted); text-decoration: none; font-size: .85rem; font-weight: 500;
+      display: flex; align-items: center; gap: .4rem; transition: color .25s;
+    }
+    .nav-back:hover { color: var(--text); }
+    .page-wrap {
+      position: relative; z-index: 1;
+      max-width: 760px; margin: 0 auto;
+      padding: 7rem 2rem 5rem;
+    }
+    .page-badge {
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: rgba(21,151,220,0.1); border: 1px solid rgba(21,151,220,0.2);
+      padding: .4rem 1.1rem; border-radius: 100px;
+      font-size: .78rem; font-weight: 600; color: var(--tertiary); letter-spacing: .5px;
+      margin-bottom: 2rem;
+    }
+    .page-title {
+      font-size: clamp(2rem, 5vw, 3rem); font-weight: 900;
+      letter-spacing: -1.5px; line-height: 1.1; margin-bottom: .75rem;
+    }
+    .page-title span {
+      background: linear-gradient(135deg, var(--tertiary), var(--secondary));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .page-updated {
+      font-size: .8rem; color: var(--muted); margin-bottom: 3rem;
+      padding-bottom: 2rem; border-bottom: 1px solid var(--border);
+    }
+    .legal-section {
+      margin-bottom: 2.5rem;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 2rem;
+      transition: border-color .3s;
+    }
+    .legal-section:hover { border-color: var(--border-hover); }
+    .legal-section h2 {
+      font-size: 1rem; font-weight: 800; margin-bottom: 1rem;
+      display: flex; align-items: center; gap: .5rem; color: var(--text-bright);
+    }
+    .legal-section h2 .num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; border-radius: 6px;
+      background: rgba(21,151,220,0.12); border: 1px solid rgba(21,151,220,0.18);
+      font-size: .75rem; color: var(--tertiary);
+    }
+    .legal-section p { font-size: .88rem; color: var(--muted); line-height: 1.85; margin-bottom: .85rem; }
+    .legal-section p:last-child { margin-bottom: 0; }
+    .legal-section a { color: var(--tertiary); text-decoration: none; }
+    .legal-section a:hover { text-decoration: underline; }
+    .legal-section strong { color: var(--text); font-weight: 600; }
+    .data-row {
+      display: flex; gap: 1rem; padding: .6rem 0;
+      border-bottom: 1px solid rgba(21,151,220,0.07); font-size: .875rem;
+    }
+    .data-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .data-label { color: var(--muted); min-width: 140px; font-weight: 500; }
+    .data-val { color: var(--text); }
+    footer {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2rem; text-align: center; margin-top: 2rem;
+    }
+    .footer-links { display: flex; gap: 2rem; justify-content: center; list-style: none; margin-bottom: .75rem; flex-wrap: wrap; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: .83rem; font-weight: 500; transition: color .25s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { color: var(--muted); font-size: .78rem; opacity: .7; }
+    .footer-legal { margin-top: .75rem; font-size: .72rem; opacity: .45; }
+    .footer-legal a { color: var(--muted); text-decoration: none; margin: 0 .4rem; }
+    @media (max-width: 600px) {
+      nav { padding: 0 1.5rem; }
+      .data-row { flex-direction: column; gap: .2rem; }
+      .data-label { min-width: unset; }
+    }
+  </style>
+</head>
+<body>
+<div class="ambient"></div>
+<nav>
+  <a href="/" class="nav-brand">
+    <div class="nav-logo-icon">F</div>
+    <span class="nav-logo-text">FinautoIA</span>
+  </a>
+  <a href="/" class="nav-back">← Volver al inicio</a>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-badge">📄 Legal</div>
+  <h1 class="page-title">Aviso <span>Legal</span></h1>
+  <p class="page-updated">Última actualización: enero 2026</p>
+
+  <div class="legal-section">
+    <h2><span class="num">1</span> Datos identificativos del titular</h2>
+    <div class="data-row"><span class="data-label">Nombre</span><span class="data-val">Marcel Vila</span></div>
+    <div class="data-row"><span class="data-label">Actividad</span><span class="data-val">Consultoría en automatización e inteligencia artificial para empresas (FinautoIA)</span></div>
+    <div class="data-row"><span class="data-label">NIF</span><span class="data-val">23896274X</span></div>
+    <div class="data-row"><span class="data-label">Correo electrónico</span><span class="data-val"><a href="mailto:marcel.vila@finautoia.com">marcel.vila@finautoia.com</a></span></div>
+    <div class="data-row"><span class="data-label">Sitio web</span><span class="data-val">finautoia.com</span></div>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">2</span> Objeto y ámbito de aplicación</h2>
+    <p>El presente Aviso Legal regula el acceso y uso del sitio web <strong>finautoia.com</strong> (en adelante, "el Sitio"), titularidad de Marcel Vila, en cumplimiento de lo establecido en la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE).</p>
+    <p>El acceso y uso del Sitio implica la aceptación plena y sin reservas de las condiciones recogidas en este Aviso Legal. Si no estás de acuerdo con ellas, te rogamos que no utilices el Sitio.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">3</span> Propiedad intelectual e industrial</h2>
+    <p>Todos los contenidos del Sitio —textos, imágenes, logotipos, diseños, código fuente y demás elementos— son titularidad exclusiva de Marcel Vila o de terceros que han autorizado su uso, y están protegidos por la normativa española e internacional de propiedad intelectual e industrial.</p>
+    <p>Queda expresamente prohibida la reproducción, distribución, comunicación pública o transformación de cualquier contenido del Sitio sin autorización previa y por escrito del titular.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">4</span> Condiciones de acceso y uso</h2>
+    <p>El usuario se compromete a hacer un uso lícito del Sitio, respetando la legislación vigente y los derechos de terceros. Queda prohibido utilizar el Sitio con fines fraudulentos o para transmitir contenidos ilícitos o perjudiciales.</p>
+    <p>El titular se reserva el derecho de modificar, suspender o interrumpir el acceso al Sitio en cualquier momento y sin previo aviso.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">5</span> Responsabilidad</h2>
+    <p>El titular no garantiza la disponibilidad continua del Sitio ni se responsabiliza de los daños que pudieran derivarse de interrupciones, errores técnicos o accesos no autorizados por parte de terceros.</p>
+    <p>Los enlaces a sitios externos son meramente informativos. El titular no asume ninguna responsabilidad por el contenido de dichos sitios ni por los daños que puedan ocasionar.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">6</span> Legislación aplicable y jurisdicción</h2>
+    <p>Este Aviso Legal se rige por la legislación española. Para la resolución de cualquier controversia derivada del uso del Sitio, las partes se someten a los juzgados y tribunales competentes conforme a la normativa vigente.</p>
+  </div>
+</div>
+
+<footer>
+  <ul class="footer-links">
+    <li><a href="/">Inicio</a></li>
+    <li><a href="/#casos">Casos</a></li>
+    <li><a href="/#proceso">Proceso</a></li>
+    <li><a href="mailto:marcel.vila@finautoia.com">Contacto</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 FinautoIA · Automatización práctica para pymes</p>
+  <p class="footer-legal">
+    <a href="/aviso-legal.html">Aviso Legal</a> ·
+    <a href="/privacidad.html">Política de Privacidad</a> ·
+    <a href="/cookies.html">Cookies</a>
+  </p>
+</footer>
+</body>
+</html>

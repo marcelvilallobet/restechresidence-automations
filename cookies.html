@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Cookies — FinautoIA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #0E2841; --secondary: #CAEEFB; --tertiary: #1597DC;
+      --bg: #060e1a; --bg2: #0a1829;
+      --card: rgba(21,151,220,0.04); --card-hover: rgba(21,151,220,0.08);
+      --border: rgba(21,151,220,0.12); --border-hover: rgba(21,151,220,0.28);
+      --text: #e4edf5; --text-bright: #ffffff; --muted: #6889ab;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      overflow-x: hidden; line-height: 1.6;
+    }
+    .ambient {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    }
+    .ambient::before {
+      content: ''; position: absolute; width: 800px; height: 800px;
+      top: -200px; left: -100px;
+      background: radial-gradient(circle, rgba(21,151,220,0.08) 0%, transparent 65%);
+      animation: float1 20s ease-in-out infinite;
+    }
+    .ambient::after {
+      content: ''; position: absolute; width: 600px; height: 600px;
+      bottom: -100px; right: -100px;
+      background: radial-gradient(circle, rgba(202,238,251,0.05) 0%, transparent 65%);
+      animation: float2 25s ease-in-out infinite;
+    }
+    @keyframes float1 { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(100px,80px); } }
+    @keyframes float2 { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(-80px,-60px); } }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 3rem; height: 64px;
+      background: rgba(6,14,26,0.7);
+      backdrop-filter: blur(20px) saturate(1.5);
+      border-bottom: 1px solid rgba(21,151,220,0.08);
+    }
+    .nav-brand { display: flex; align-items: center; gap: .75rem; text-decoration: none; }
+    .nav-logo-icon {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, var(--tertiary), var(--secondary));
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: .8rem; color: var(--bg);
+    }
+    .nav-logo-text {
+      font-size: 1.1rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--secondary), var(--tertiary));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      letter-spacing: -0.5px;
+    }
+    .nav-back {
+      color: var(--muted); text-decoration: none; font-size: .85rem; font-weight: 500;
+      display: flex; align-items: center; gap: .4rem; transition: color .25s;
+    }
+    .nav-back:hover { color: var(--text); }
+    .page-wrap {
+      position: relative; z-index: 1;
+      max-width: 760px; margin: 0 auto;
+      padding: 7rem 2rem 5rem;
+    }
+    .page-badge {
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: rgba(21,151,220,0.1); border: 1px solid rgba(21,151,220,0.2);
+      padding: .4rem 1.1rem; border-radius: 100px;
+      font-size: .78rem; font-weight: 600; color: var(--tertiary); letter-spacing: .5px;
+      margin-bottom: 2rem;
+    }
+    .page-title {
+      font-size: clamp(2rem, 5vw, 3rem); font-weight: 900;
+      letter-spacing: -1.5px; line-height: 1.1; margin-bottom: .75rem;
+    }
+    .page-title span {
+      background: linear-gradient(135deg, var(--tertiary), var(--secondary));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .page-updated {
+      font-size: .8rem; color: var(--muted); margin-bottom: 3rem;
+      padding-bottom: 2rem; border-bottom: 1px solid var(--border);
+    }
+    .legal-section {
+      margin-bottom: 2.5rem;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 2rem;
+      transition: border-color .3s;
+    }
+    .legal-section:hover { border-color: var(--border-hover); }
+    .legal-section h2 {
+      font-size: 1rem; font-weight: 800; margin-bottom: 1rem;
+      display: flex; align-items: center; gap: .5rem; color: var(--text-bright);
+    }
+    .legal-section h2 .num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; border-radius: 6px;
+      background: rgba(21,151,220,0.12); border: 1px solid rgba(21,151,220,0.18);
+      font-size: .75rem; color: var(--tertiary);
+    }
+    .legal-section p { font-size: .88rem; color: var(--muted); line-height: 1.85; margin-bottom: .85rem; }
+    .legal-section p:last-child { margin-bottom: 0; }
+    .legal-section a { color: var(--tertiary); text-decoration: none; }
+    .legal-section a:hover { text-decoration: underline; }
+    .legal-section strong { color: var(--text); font-weight: 600; }
+    .cookie-table {
+      width: 100%; border-collapse: collapse; margin-top: .75rem; font-size: .82rem;
+    }
+    .cookie-table th {
+      text-align: left; padding: .65rem .85rem;
+      background: rgba(21,151,220,0.08); color: var(--tertiary);
+      font-weight: 700; font-size: .78rem; letter-spacing: .3px;
+    }
+    .cookie-table th:first-child { border-radius: 8px 0 0 0; }
+    .cookie-table th:last-child { border-radius: 0 8px 0 0; }
+    .cookie-table td {
+      padding: .65rem .85rem; color: var(--muted);
+      border-top: 1px solid rgba(21,151,220,0.07);
+    }
+    .cookie-table tr:last-child td:first-child { border-radius: 0 0 0 8px; }
+    .cookie-table tr:last-child td:last-child { border-radius: 0 0 8px 0; }
+    .badge-tech {
+      display: inline-block; padding: .2rem .55rem; border-radius: 5px;
+      background: rgba(21,151,220,0.1); border: 1px solid rgba(21,151,220,0.15);
+      color: var(--tertiary); font-size: .72rem; font-weight: 600;
+    }
+    .badge-exempt {
+      display: inline-block; padding: .2rem .55rem; border-radius: 5px;
+      background: rgba(32,200,120,0.1); border: 1px solid rgba(32,200,120,0.2);
+      color: #3ecf8e; font-size: .72rem; font-weight: 600;
+    }
+    footer {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2rem; text-align: center; margin-top: 2rem;
+    }
+    .footer-links { display: flex; gap: 2rem; justify-content: center; list-style: none; margin-bottom: .75rem; flex-wrap: wrap; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: .83rem; font-weight: 500; transition: color .25s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { color: var(--muted); font-size: .78rem; opacity: .7; }
+    .footer-legal { margin-top: .75rem; font-size: .72rem; opacity: .45; }
+    .footer-legal a { color: var(--muted); text-decoration: none; margin: 0 .4rem; }
+    @media (max-width: 600px) {
+      nav { padding: 0 1.5rem; }
+      .cookie-table { display: block; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="ambient"></div>
+<nav>
+  <a href="/" class="nav-brand">
+    <div class="nav-logo-icon">F</div>
+    <span class="nav-logo-text">FinautoIA</span>
+  </a>
+  <a href="/" class="nav-back">← Volver al inicio</a>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-badge">🍪 Cookies</div>
+  <h1 class="page-title">Política de <span>Cookies</span></h1>
+  <p class="page-updated">Última actualización: enero 2026 · En cumplimiento del art. 22.2 LSSI y la Directiva ePrivacy</p>
+
+  <div class="legal-section">
+    <h2><span class="num">1</span> ¿Qué son las cookies?</h2>
+    <p>Las cookies son pequeños archivos de texto que los sitios web almacenan en el dispositivo del usuario para recordar información sobre su visita. Pueden ser de sesión (se eliminan al cerrar el navegador) o persistentes (permanecen durante un tiempo determinado).</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">2</span> Cookies utilizadas en este sitio</h2>
+    <p>Este sitio web utiliza exclusivamente recursos de terceros para la carga de tipografías (Google Fonts). A continuación se detalla su funcionamiento:</p>
+    <table class="cookie-table">
+      <thead>
+        <tr>
+          <th>Proveedor</th>
+          <th>Finalidad</th>
+          <th>Tipo</th>
+          <th>Duración</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Google Fonts</td>
+          <td>Carga de fuentes tipográficas (Inter). Puede registrar la IP del usuario.</td>
+          <td><span class="badge-tech">Técnica</span></td>
+          <td>Sesión</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin-top:1rem;">Este sitio <strong>no utiliza cookies propias</strong> de análisis, publicidad o seguimiento de comportamiento.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">3</span> Cookies de Google Fonts</h2>
+    <p>La carga de fuentes desde los servidores de Google puede implicar la transferencia de la dirección IP del usuario a servidores ubicados en Estados Unidos. Google LLC actúa como encargado del tratamiento bajo las garantías del Marco de Privacidad de Datos UE-EE. UU.</p>
+    <p>Puedes consultar la política de privacidad de Google en: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></p>
+    <p>Si deseas evitar esta transferencia, puedes bloquear las solicitudes a <strong>fonts.googleapis.com</strong> desde la configuración de tu navegador o utilizando una extensión de bloqueo de contenido.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">4</span> Cómo gestionar o eliminar las cookies</h2>
+    <p>Puedes configurar tu navegador para aceptar, rechazar o eliminar cookies en cualquier momento. Ten en cuenta que desactivar ciertas cookies puede afectar a la experiencia de navegación.</p>
+    <p>Guías de configuración por navegador:</p>
+    <p>
+      <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a> ·
+      <a href="https://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-sitios-web-rastrear-preferencias" target="_blank" rel="noopener">Mozilla Firefox</a> ·
+      <a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a> ·
+      <a href="https://support.microsoft.com/es-es/microsoft-edge/eliminar-las-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener">Microsoft Edge</a>
+    </p>
+  </div>
+
+  <div class="legal-section">
+    <h2><span class="num">5</span> Actualizaciones de esta política</h2>
+    <p>Esta Política de Cookies puede actualizarse en función de cambios técnicos o normativos. La fecha de última actualización siempre estará visible en la parte superior de esta página. Te recomendamos revisarla periódicamente.</p>
+    <p>Para cualquier consulta relacionada con el uso de cookies, puedes contactar con nosotros en <a href="mailto:marcel.vila@finautoia.com">marcel.vila@finautoia.com</a>.</p>
+  </div>
+</div>
+
+<footer>
+  <ul class="footer-links">
+    <li><a href="/">Inicio</a></li>
+    <li><a href="/#casos">Casos</a></li>
+    <li><a href="/#proceso">Proceso</a></li>
+    <li><a href="mailto:marcel.vila@finautoia.com">Contacto</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 FinautoIA · Automatización práctica para pymes</p>
+  <p class="footer-legal">
+    <a href="/aviso-legal.html">Aviso Legal</a> ·
+    <a href="/privacidad.html">Política de Privacidad</a> ·
+    <a href="/cookies.html">Cookies</a>
+  </p>
+</footer>
+</body>
+</html>
