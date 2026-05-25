@@ -268,9 +268,10 @@
     .h-metric:last-child { border-right: none; }
     .h-metric:hover { background: var(--card-hover); }
     .h-metric-val {
-      display: block; font-size: 2.25rem; font-weight: 900;
-      color: var(--tertiary); line-height: 1;
+      display: block; font-size: clamp(1.35rem, 2.5vw, 2.25rem); font-weight: 900;
+      color: var(--tertiary); line-height: 1.1;
       margin-bottom: .4rem;
+      white-space: nowrap;
     }
     .h-metric-lbl { font-size: .75rem; color: var(--muted); font-weight: 500; }
 
