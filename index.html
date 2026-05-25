@@ -258,22 +258,22 @@
       border: 1px solid var(--border);
       border-radius: 14px; overflow: hidden;
       animation: fadeInUp .8s .8s both;
-      max-width: 750px; width: 100%;
+      max-width: 860px; width: 100%;
     }
     .h-metric {
-      flex: 1; padding: 1.75rem 1.25rem; text-align: center;
+      flex: 1; padding: 1.75rem 1rem; text-align: center;
       border-right: 1px solid var(--border);
       transition: background .3s;
     }
     .h-metric:last-child { border-right: none; }
     .h-metric:hover { background: var(--card-hover); }
     .h-metric-val {
-      display: block; font-size: clamp(1.35rem, 2.5vw, 2.25rem); font-weight: 900;
-      color: var(--tertiary); line-height: 1.1;
-      margin-bottom: .4rem;
-      white-space: nowrap;
+      display: block; font-size: 1.6rem; font-weight: 900;
+      
+      
+      color: var(--tertiary); line-height: 1; white-space: nowrap;
     }
-    .h-metric-lbl { font-size: .75rem; color: var(--muted); font-weight: 500; }
+    .h-metric-lbl { font-size: .72rem; color: var(--muted); font-weight: 500; white-space: nowrap; }
 
     /* ── DIVIDER ── */
     .divider {
@@ -555,7 +555,7 @@
       <span class="h-metric-lbl">Para configurarlo y arrancarlo</span>
     </div>
     <div class="h-metric">
-      <span class="h-metric-val">Día 1</span>
+      <span class="h-metric-val">&lt;1 semana</span>
       <span class="h-metric-lbl">Sin semanas de onboarding</span>
     </div>
   </div>
