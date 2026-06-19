@@ -844,13 +844,15 @@
     const m = encodeURIComponent('Hola, vengo de FinautoIA y me gustaría más información');
     window.open('https://wa.me/' + n + '?text=' + m, '_blank');
   }
-  // Email protegido del scraping
-  document.getElementById('email-link').addEventListener('click', function(e) {
-    e.preventDefault();
-    const u = 'marcel.vila';
-    const d = 'gofinautoia.com';
-    window.location.href = 'mailto:' + u + '@' + d;
-  });
+  // Email protegido del scraping: se monta el mailto real al cargar (sin '#', sin salto al inicio)
+  (function() {
+    const link = document.getElementById('email-link');
+    if (link) {
+      const u = 'marcel.vila';
+      const d = 'gofinautoia.com';
+      link.setAttribute('href', 'mailto:' + u + '@' + d);
+    }
+  })();
 </script>
 <!-- FORMULARIO: envío AJAX a Netlify sin recargar la página -->
 <script>
