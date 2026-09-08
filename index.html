@@ -799,9 +799,6 @@
         ❌ Hubo un error. Inténtalo de nuevo o escríbenos por WhatsApp.
       </div>
     </form>
-    <span class="cta-note">
-      ¿Prefieres email? Escríbenos a <a href="#" id="email-link">marcel.vila.llobet [at] gmail.com</a>
-    </span>
   </div>
 </div>
 <!-- FOOTER -->
@@ -849,15 +846,6 @@
     const m = encodeURIComponent('Hola, vengo de FinautoIA y me gustaría más información');
     window.open('https://wa.me/' + n + '?text=' + m, '_blank');
   }
-  // Email protegido del scraping: se monta el mailto real al cargar (sin '#', sin salto al inicio)
-  (function() {
-    const link = document.getElementById('email-link');
-    if (link) {
-      const u = 'marcel.vila.llobet';
-      const d = 'gmail.com';
-      link.setAttribute('href', 'mailto:' + u + '@' + d);
-    }
-  })();
 </script>
 <!-- FORMULARIO: envío AJAX a Netlify sin recargar la página -->
 <script>
